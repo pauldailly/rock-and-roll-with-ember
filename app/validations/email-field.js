@@ -8,5 +8,6 @@ export default [
   validator('format', {
     type: 'email',
     message: 'Email should be a valid email'
-  })
+  }),
+  validator('ds-error')
 ];
