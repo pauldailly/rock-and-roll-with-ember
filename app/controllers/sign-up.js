@@ -1,15 +1,19 @@
 import Controller from '@ember/controller';
+import { getWithDefault } from '@ember/object';
+import { computed } from '@ember/object';
+
 export default Controller.extend({
+  showErrors: computed('_showErrors', function () {
+    return getWithDefault(this, '_showErrors', {
+      email: false,
+      password: false
+    });
+  }),
+
   actions: {
     async signUp(event) {
       event.preventDefault();
-      let { email, password } = this.getProperties('email',
-        'password');
-      let user = this.get('store').createRecord('user', {
-        email,
-        password
-      });
-      await user.save();
+      await this.get('model').save();
       await this.transitionToRoute('login');
     }
   }

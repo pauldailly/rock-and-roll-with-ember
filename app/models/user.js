@@ -1,7 +1,16 @@
 import DS from 'ember-data';
-const { Model, attr } = DS;
+import { buildValidations } from 'ember-cp-validations';
+import emailFieldValidation from 'rarwe/validations/email-field';
+import passwordFieldValidation from 'rarwe/validations/password-field';
 
-export default Model.extend({
-  email: attr('string'),
+const { Model, attr } = DS;
+const Validations = buildValidations({
+  // I removed the validations that are now defined in their own file
+  email: emailFieldValidation,
+  password: passwordFieldValidation
+  
+});
+  export default Model.extend(Validations, {
+    email: attr('string'),
   password: attr('string'),
 });
