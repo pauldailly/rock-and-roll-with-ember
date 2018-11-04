@@ -16,11 +16,14 @@ module.exports = function(environment) {
         Date: false
       }
     },
+    'ember-simple-auth': {
+      routeIfAlreadyAuthenticated: 'bands'
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
   };
 
   if (environment === 'development') {
